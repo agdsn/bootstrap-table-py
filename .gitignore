@@ -6,3 +6,4 @@ dist/
 build/
 
 wtforms_widgets.egg-info
+bootstrap_table_py.egg-info/
