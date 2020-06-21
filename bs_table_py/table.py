@@ -382,6 +382,7 @@ def datetime_format(dt, default=None, formatter=iso_format):
             'timestamp': None,
         }
 
+
 def enforce_url_params(url, params):
     """Safely enforce query values in an url
 
