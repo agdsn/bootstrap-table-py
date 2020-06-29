@@ -42,7 +42,7 @@ return jsonify(items=[{
     'delete_link': {
         'href': url_for('user_delete', user_id=user.id),
         'title': "Delete",
-        'icon': 'glyphicon-trash',
+        'icon': 'fa-trash',
         'btn-class': 'btn-danger'
     }} for user in get_users()])
 

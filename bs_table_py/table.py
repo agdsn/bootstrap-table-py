@@ -401,11 +401,11 @@ def enforce_url_params(url, params):
 
 
 @lazy_join
-def button_toolbar(title: str, href: str, id=False, icon: str = "glyphicon-plus") \
+def button_toolbar(title: str, href: str, id=False, icon: str = "fa-plus") \
     -> LazilyJoined:
     params = html_params(class_="btn btn-default btn-outline-secondary", href=href, id=id)
     yield f"<a {params}>"
-    yield f"<span class=\"glyphicon {icon}\"></span>"
+    yield f"<span class=\"fa {icon}\"></span>"
     yield " "
     yield title
     yield "</a>"
