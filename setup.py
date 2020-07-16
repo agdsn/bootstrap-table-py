@@ -5,7 +5,7 @@ setup(
     author="The Pycroft Authors",
     description="Python wrapper for bootstrap-table",
     long_description=__doc__,
-    version="1.0.0",
+    version="1.0.1",
     url="https://github.com/agdsn/bootstrap-table-py/",
     packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
