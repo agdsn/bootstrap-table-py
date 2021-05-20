@@ -132,6 +132,11 @@ class DateColumn(Column):
     pass
 
 
+@custom_formatter_column('table.relativeDateFormatter')
+class RelativeDateColumn(Column):
+    pass
+
+
 UnboundTableArgs = FrozenSet[Tuple[str, Any]]
 TableArgs = Dict[str, str]
 
