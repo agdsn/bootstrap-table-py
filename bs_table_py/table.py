@@ -416,6 +416,17 @@ def button_toolbar(title: str, href: str, id=False, icon: str = "fa-plus") \
     yield "</a>"
 
 
+@lazy_join
+def toggle_button_toolbar(title: str, id: str, icon: str = "fa-plus") \
+    -> LazilyJoined:
+    yield f'<input type="checkbox" class="btn-check" autocomplete="off" id="{id}">'
+    yield f'<label class="btn btn-default btn-outline-secondary" for="{id}">'
+    yield f"<span class=\"fa {icon}\"></span>"
+    yield " "
+    yield title
+    yield "</label>"
+
+
 def html_params(**kwargs):
     """
     Generate HTML attribute syntax from inputted keyword arguments.
