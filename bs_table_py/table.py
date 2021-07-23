@@ -1,4 +1,5 @@
 import html
+import typing
 from collections import OrderedDict
 from copy import copy
 from dataclasses import dataclass
@@ -94,6 +95,25 @@ class Column:
     __html__ = render
 
 
+class DictValueMixin:
+    @classmethod
+    def value(cls, **kw) -> dict:
+        """This function exists as a method to provide strongly-typed dicts.
+
+        For this, add a type annotation in the subclass like this:
+
+            >>> @custom_formatter_column('table.fooFormatter')
+            ... class FooColumn(DictValueMixin, Column):
+            ...     @classmethod
+            ...     def value(cls, foo: str) -> dict: ...
+        """
+        return {
+            key: None if val is False else val
+            for key, val in kw.items()
+            if val is not None
+        }
+
+
 # noinspection PyPep8Naming
 class custom_formatter_column:
     def __init__(self, formatter_name: str):
@@ -123,8 +143,11 @@ class MultiBtnColumn(Column):
 
 
 @custom_formatter_column('table.linkFormatter')
-class LinkColumn(Column):
-    pass
+class LinkColumn(DictValueMixin, Column):
+    if typing.TYPE_CHECKING:
+        @classmethod
+        def value(cls, href: str, title: str, glyphicon: Optional[str] = None) -> dict: ...
+
 
 
 @custom_formatter_column('table.dateFormatter')
@@ -224,6 +247,10 @@ class BootstrapTable(metaclass=BootstrapTableMeta):
         self.table_args.setdefault('data-url', self.data_url)
         if table_args:
             self.table_args.update(table_args)
+
+    @classmethod
+    def row(cls, **kw) -> dict:
+        return dict(**kw)
 
     @property
     def _columns(self) -> List[Column]:
