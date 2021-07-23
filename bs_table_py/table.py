@@ -403,6 +403,7 @@ def datetime_format(dt, default=None, formatter=iso_format):
     :param str|None default: formatted value to use if `dt` is None
     :return:
     """
+    # TODO turn this into a `DateTimeColumn` method
     if dt is not None:
         return {
             'formatted': formatter(dt),
