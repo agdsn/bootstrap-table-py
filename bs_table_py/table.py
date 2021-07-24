@@ -374,6 +374,9 @@ def iso_format(dt: Optional[typing.Union[datetime, date]] = None):
     if dt is None:
         return "n/a"
 
+    if isinstance(dt, date):
+        return dt.isoformat()
+
     return dt.isoformat(sep=' ')
 
 
