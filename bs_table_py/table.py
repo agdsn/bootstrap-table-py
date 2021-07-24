@@ -370,18 +370,20 @@ class SplittedTable(BootstrapTable):
         yield "</thead>"
 
 
-def iso_format(dt=None):
+def iso_format(dt: Optional[typing.Union[datetime, date]] = None):
     if dt is None:
         return "n/a"
 
     return dt.isoformat(sep=' ')
 
 
-def date_format(dt, default=None, formatter=iso_format):
+def date_format(dt: Optional[typing.Union[datetime, date]],
+                default: Optional[str] = None, formatter: Callable = iso_format) -> dict:
     """
     Format date or datetime objects for `table.dateFormatter`.
-    :param datetime|date|None dt: a date or datetime object or None
-    :param str|None default: formatted value to use if `dt` is None
+    :param dt: a date or datetime object or None
+    :param default: formatted value to use if `dt` is None
+    :param formatter:
     :return:
     """
     if dt is not None:
@@ -396,11 +398,14 @@ def date_format(dt, default=None, formatter=iso_format):
         }
 
 
-def datetime_format(dt, default=None, formatter=iso_format):
+def datetime_format(dt: Optional[datetime],
+                    default: Optional[str] = None,
+                    formatter: Callable = iso_format) -> dict:
     """
     Format datetime objects for `table.dateFormatter`.
-    :param datetime|None dt: a datetime object or None
-    :param str|None default: formatted value to use if `dt` is None
+    :param dt: a datetime object or None
+    :param default: formatted value to use if `dt` is None
+    :param formatter:
     :return:
     """
     # TODO turn this into a `DateTimeColumn` method
